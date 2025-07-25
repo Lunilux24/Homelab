@@ -1,6 +1,6 @@
 # Homelab
 
-This is the github repository for my Homelab. At the moment, I am running Ubuntu Server + Cockpit for remote monitoring and a frontend interface. I plan on using this repository to store import files such as docker-compose files, keep track of important links, plan future projects and document my progress and the things I learn along the way.
+This is the github repository for my Homelab. At the moment, I am running Ubuntu Server + Cockpit for remote monitoring and a frontend interface. I plan on using this repository to store important files such as docker-compose files, keep track of important links, plan future projects and document my progress and the things I learn along the way.
 
 ## My Current Setup
 
