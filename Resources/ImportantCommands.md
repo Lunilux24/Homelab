@@ -7,8 +7,14 @@ sudo -i
 # Change name of file
 mv oldname.txt newname.txt
 
+# Move file
+mv filename.ext new/dir/filename.ext
+
 # Reboot PC
 sudo reboot
+
+# Config for shell
+~/.bashrc
 ```
 
 Nginx Commands
