@@ -17,9 +17,9 @@ This is the github repository for my Homelab. At the moment, I am running Ubuntu
   - Docker
   - Cockpit (Interface)
   - Tailscale
+  - Jellyfin (Media Server)
     
 ### Planned Applications
-  - Jellyfin (Media Server)
   - Nextcloud (File Server)
   - Immich (Image File Server)
   - Docmost (OneNote Replacement)
