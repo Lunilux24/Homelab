@@ -34,6 +34,8 @@ services:
 
 A Linux kernel security feature called AppArmor (Application Armor) enables the system administrator to limit the capabilities of individual programs by creating per-program profiles. This caused an interferance with docker and was solved by running the following command: ```sudo aa-remove-unknown```
 
+[Source](https://medium.com/devops-technical-notes-and-manuals/how-to-solve-cannot-kill-docker-container-permission-denied-error-message-e3af7ccb7e29)
+
 ### ERROR: Docker container keyerror containerconfig
 
 ```docker-compose``` and ```docker compose``` are different and the former is now deprecated. To fix, I had to update to the new V2 version of docker using the following command.
