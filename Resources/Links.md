@@ -15,3 +15,5 @@
 [Docker: Bind Mounts](https://docs.docker.com/engine/storage/bind-mounts/)
 
 [Tailscale: Key Expiry](https://tailscale.com/kb/1028/key-expiry)
+
+[Jellyfin/Tailscale: Setting up remote access through Tailscale](https://www.ethanmad.com/post/jellyfin_remote_access/)
