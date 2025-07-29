@@ -18,6 +18,7 @@ This is the github repository for my Homelab. At the moment, I am running Ubuntu
   - Cockpit (Interface)
   - Tailscale
   - Jellyfin (Media Server)
+  - Potainer.io (Container Manager)
     
 ### Planned Applications
   - Nextcloud (File Server)
@@ -25,7 +26,6 @@ This is the github repository for my Homelab. At the moment, I am running Ubuntu
   - Docmost (OneNote Replacement)
   - Hoarder (Bookmark Manager)
   - Pi-hole (Network Monitor)
-  - Potainer.io (Container Manager)
   - Bluehost (Wordpress Server)
 
 ### Not Sure Yet
