@@ -33,3 +33,11 @@ services:
 ```
 
 After a simple crash the first time where my database.db path was inaccessible, the interface was accessible via localhost:8080 and I proceeded to login with "admin" as my username and the randomly generated password that created on initial build. You can find it by running ```docker logs```. Just ensure that your container is up and running otherwise, you won't be able to see the output.
+
+## Errors Encountered
+
+The most difficult part (or so I thought) was mounting the volumes correctly and ensuring that the filebrowser.json and database.db folders were in the right locations. Once I got it running however, I came to realize that I wasn't able to upload, edit, or create folders or files. Instantly, I thought to check the logs and quickly found that I had the wrong permissions. This eventually led to me checking and realizing that my docker compose file was running the container with UID/GID = 1000 and the folder that it was trying to write to was owned by the root user and wouldn't allow write access. As a result I began looking for a way to change the permissions.
+
+The first option was to run the container in sudo (UID/GID = 0), but I was worried about potential invaders getting access to too much power; especially with an application like a file browser. This led to the second option. Unmount the drive and change the permissions using chmod. Ultimately this led no where because I quickly came to realize that the format of my drive was exFAT. The reason that this was a problem was because exFAT does not allow traditional linux commands. 
+
+
