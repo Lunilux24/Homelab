@@ -15,6 +15,11 @@ sudo reboot
 
 # Config for shell
 ~/.bashrc
+
+# See drive output
+sudo blkid
+
+
 ```
 
 Nginx Commands
