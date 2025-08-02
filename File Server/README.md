@@ -1,4 +1,4 @@
-# File Server
+# Productivity Server
 
 The applications in this stack will include all file management or productivity related applications. The list includes:
     - File Browser
