@@ -28,6 +28,10 @@ services:
     restart: 'unless-stopped'
 ```
 
+After setting up the docker compose file properly and troubleshooting the below bugs, I went through the initial setup guide on the web client and setup my libraries. 
+
+![Jellyfin Dashboard Screenshot](../Photos/Screenshot%202025-08-02%20140405.jpg)
+
 ## Errors Encountered
 
 ### ERROR: docker compose down, docker kill, docker stop, etc: permission denied

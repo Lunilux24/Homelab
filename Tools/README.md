@@ -6,9 +6,10 @@ The tools in this stack will include:
     - Tailscale
     - Pi-hole
     - Portainer
+    - Glance
+
 
 As well as potentially:
-    - Glance
     - Nginx Proxy Manager
 
 ## Setting up Docker
@@ -121,3 +122,44 @@ sudo systemctl daemon-reload
 ```
 
 Pihole should now run properly!
+
+![Pihole Dashboard Screenshot](../Photos/pihole.png)
+
+## Setting up Glance
+
+Installing glance was relativlely simple due to their very detailed [documentation](https://github.com/glanceapp/glance/tree/main?tab=readme-ov-file#installation). I started off by creating a new directory as well as the template files within by running: 
+
+```
+mkdir glance && cd glance && curl -sL https://github.com/glanceapp/docker-compose-template/archive/refs/heads/main.tar.gz | tar -xzf - --strip-components 2
+```
+
+After that, I had to make a small change to the docker compose file because the default port 8080 that Glance uses is already being used by my File Browser container. Here is my docker compose:
+
+```
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+      - ./assets:/app/assets
+      # Optionally, also mount docker socket if you want to use the docker containers widget
+      # - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 8081:8080
+    env_file: .env
+```
+
+Because I am using portainer, I felt that there wasn't a need to mount the docker socket to see container status. I then proceeded to tweak the config file "home.yml". Here is a list of the things I did:
+
+- Replaced the twitch tab with a services tab that monitors my applications and has direct links to all my services
+- Changed the weather to Calgary instead of London
+- Added my repositories in the bottom right
+- Added more Reddit tabs, Youtube creators, and RSS URLs to my RSS feed
+
+Tweaking the config file was super simple as it is just a yml file and all the documentation for customizing your dashboard is extensive. You can find it all [here](https://github.com/glanceapp/glance/blob/main/docs/configuration.md#configuring-glance).
+
+The final thing I wanted to configure was for my newly configured Glance dashboard to be the default page when opening up a new page on Firefox. To do this, I downloaded an extension called [New Tab Override](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) and added my Glance URL to it. That's it!
+
+![Glance Dashboard Screenshot](../Photos/Screenshot%202025-08-02%20135703.jpg)

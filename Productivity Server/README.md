@@ -40,4 +40,25 @@ The most difficult part (or so I thought) was mounting the volumes correctly and
 
 The first option was to run the container in sudo (UID/GID = 0), but I was worried about potential invaders getting access to too much power; especially with an application like a file browser. This led to the second option. Unmount the drive and change the permissions using chmod. Ultimately this led no where because I quickly came to realize that the format of my drive was exFAT. The reason that this was a problem was because exFAT does not allow traditional linux commands. 
 
+In order to fix this, I had to change the format of the drive from ExFat to NTFS. The procedure was as follows:
+
+```
+# Make a backup of the current drive
+sudo mkdir -p /media/nereusd/jellyfin_backup
+sudo cp -a /media/jellyfind/. /media/nereusd/jellyfin_backup/
+
+# Unmount the drive
+sudo umount /media/jellyfind
+
+# Format the drive
+sudo mkfs.ntfs -f /dev/sdb2
+
+# Remount the drive
+sudo mount -t ntfs /dev/sdb2 /media/jellyfind
+
+# Restore backup
+sudo cp -a /media/nereusd/jellyfin_backup/. /media/jellyfind/
+```
+
+In order to remount the drive, I needed to reboot the server due to the drive being "busy". I wasn't able to pinpoint what was using the drive so a quick reboot solved the problem.
 
