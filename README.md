@@ -19,15 +19,15 @@ This is the github repository for my Homelab. At the moment, I am running Ubuntu
   - Tailscale
   - Jellyfin (Media Server)
   - Potainer.io (Container Manager)
-    
-### Planned Applications
+  - Pi-hole (Network Monitor)
   - File Browser (File Server)
+
+### Planned Applications
   - Immich (Image File Server)
+  - Glance (Web Interface)
   - Docmost (OneNote Replacement)
   - Hoarder (Bookmark Manager)
-  - Pi-hole (Network Monitor)
   - Bluehost (Wordpress Server)
 
 ### Not Sure Yet
-  - Glance?? (Interface)
   - Nginx Proxy Manager
