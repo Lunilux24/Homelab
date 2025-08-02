@@ -21,7 +21,7 @@ This is the github repository for my Homelab. At the moment, I am running Ubuntu
   - Potainer.io (Container Manager)
     
 ### Planned Applications
-  - Nextcloud (File Server)
+  - File Browser (File Server)
   - Immich (Image File Server)
   - Docmost (OneNote Replacement)
   - Hoarder (Bookmark Manager)
@@ -31,4 +31,3 @@ This is the github repository for my Homelab. At the moment, I am running Ubuntu
 ### Not Sure Yet
   - Glance?? (Interface)
   - Nginx Proxy Manager
-  - QBittorrent + ProtonVPN
