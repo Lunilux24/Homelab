@@ -62,3 +62,6 @@ sudo cp -a /media/nereusd/jellyfin_backup/. /media/jellyfind/
 
 In order to remount the drive, I needed to reboot the server due to the drive being "busy". I wasn't able to pinpoint what was using the drive so a quick reboot solved the problem.
 
+## Setting up Immich
+
+Immich was a lot easier than I had anticipated to setup. It consisted of following [this quickstart guide](https://immich.app/docs/overview/quick-start/) and tweaking a few environment variables. After that, all the configuration was done from within the app! Immich is without a doubt the most useful application in my homelab and it gets the certified "can't live without" seal of approval that only Jellyfin had up until this point.
