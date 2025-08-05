@@ -125,6 +125,10 @@ Pihole should now run properly!
 
 ![Pihole Dashboard Screenshot](../Photos/pihole.png)
 
+### Unfortunate Limitations
+
+Unfortunately, after getting to this point in the setup, I realized that my router would not allow me to set Pihole as my default DNS for the entire network. Ideally, I would have configured it so that all devices that connect to my Wi-Fi automatically use Pihole without need for manual setup. Since this wasn't a possibility for me anymore, that left me with two main paths: either set Pihole as my DHCP server as well or buy a new router and run double NAT. Unfortunately, the bastards at Rogers also made it impossible to use Pihole as a DHCP server as well meaning that I was only left with the latter choice. In the end, I actually chose none of these paths and decided that I would setup Pihole on a per device basis and just leave it at that. It was the cheapest and easiest path. Especially with the reasoning I had for using Pihole, it didn't make sense to go all in on setting up a second router. Perhaps I can leave it for a future project. 
+
 ## Setting up Glance
 
 Installing glance was relativlely simple due to their very detailed [documentation](https://github.com/glanceapp/glance/tree/main?tab=readme-ov-file#installation). I started off by creating a new directory as well as the template files within by running: 
@@ -163,3 +167,5 @@ Tweaking the config file was super simple as it is just a yml file and all the d
 The final thing I wanted to configure was for my newly configured Glance dashboard to be the default page when opening up a new page on Firefox. To do this, I downloaded an extension called [New Tab Override](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) and added my Glance URL to it. That's it!
 
 ![Glance Dashboard Screenshot](../Photos/Screenshot%202025-08-02%20135703.jpg)
+
+Shortly after messing around with my new glance dashboard, I found out about community widgets. Although some of the tutorials for these were obscure, I added the Google Calendar widget, the F1 widget, the NHL widget and the Tailscale Devices widget. Some were easier to setup than others, and it was a good opportunity to mess around with APIs and add some more custom flavour to my personal productivity dashboard.
