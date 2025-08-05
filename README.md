@@ -21,10 +21,10 @@ This is the github repository for my Homelab. At the moment, I am running Ubuntu
   - Potainer.io (Container Manager)
   - Pi-hole (Network Monitor)
   - File Browser (File Server)
-
-### Planned Applications
   - Immich (Image File Server)
   - Glance (Web Interface)
+
+### Planned Applications
   - Docmost (OneNote Replacement)
   - Hoarder (Bookmark Manager)
   - Bluehost (Wordpress Server)
