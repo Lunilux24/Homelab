@@ -1,4 +1,4 @@
-# Network Tools
+# Tools
 
 The tools in this stack will include:
     - Docker
@@ -22,6 +22,36 @@ curl -SL https://github.com/docker/compose/releases/download/v2.24.6/docker-comp
 chmod +x ~/.docker/cli-plugins/docker-compose
 ```
 
+### oh snap...
+
+When I was setting up Seafile, I ran into an unexpected issue with my Docker. ```error while creating mount source path '/opt/seafile-mysql/db': mkdir /opt/seafile-mysql: read-only file system``` It turned out that my Docker was installed incorrectly and I was using a snap version. After running ```sudo docker info```, I found out that this version was known for being buggy. To fix it, I found a guide in the [Docker Docs](https://docs.docker.com/engine/install/ubuntu). Here is a quick run down:
+
+```
+# Uninstall all previous or conflicting versions of Docker
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+# Install the latest version of Docker
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+I then wrote up a small bash script that allowed me to start up all my containers at once. Docker is now working better than ever!
+
+### ⚠️ Important 
+A few small things to note, make sure that the docker daemon service is running. You can check it's status with ```sudo systemctl status docker``` and enable it with ```sudo systemctl enable docker```
 
 ## Setting up Cockpit
 
