@@ -13,18 +13,17 @@ This is the github repository for my Homelab. At the moment, I am running Ubuntu
 ## Applications
 
 ### Current Applications
-  - Docker
   - Cockpit (Interface)
-  - Tailscale
   - Jellyfin (Media Server)
   - Potainer.io (Container Manager)
   - Pi-hole (Network Monitor)
-  - File Browser (File Server)
+  - Nextcloud (File Server)
   - Immich (Image File Server)
   - Glance (Web Interface)
   - Karakeep (Bookmarker)
 
-### What's Next?
-When I first set out to create this homelab, it was to server two purposes. The first was to be a space for all my selfhosted applications. Using applications like Jellyfin and Immich were supposed to help me disconnect from big companies like Netflix and Google. I had a goal to remove myself from their platforms (to a reasonable extent) and not depend on them as much. At this current moment in time, I would like to say that I have mostly achieved that goal. Although there is still much to do in the background such as better organizing directories and compose files as well as eventually implementing Kubernetes, now that I have all my applications up and running, I will take a break and focus on the second goal. 
+### How It All Works
+I am currently running all the above applications in Docker containers on my server. To remotely access them, I have a personal Tailnet setup through Tailscale. The reason I went with this route was because unlike the first iteration of my server, I added a lot more programs and felt like this would not only be the safer alternative, but the easier alternative as well. Using Tailscale, I just turn on my VPN on my phone and my IP address is masked as if I am on my home network! This makes connecting to my applications incredibly easy as all I have to do now is use the Tailnet IPv4 address of my server for quick and easy access. 
 
-That second goal, which I seem to have forgotten about, is to make my own Bluehost service where I can truly self host my Mother's Wordpress website. Using Tailscale for my homelab meant that I didn't have to focus too much on the networking aspect of my server. Although this was convenient, it also felt like a work around to what I originally set out to do. For now, I plan on continuing to use Tailscale for my current applications, but in order to better understand networking and all it entails, I am going to begin the self hosting process for my Mother's Wordpress site. Not exactly sure what this entails or how long it will take, but just as before, I will update this repository to have every little detail regarding it's setup. Look forward to it!
+## What's Next?
+Now that I have setup all the applications that I had planned for this home server, the next step will be bringing enhancements to make the experience even better. That means potentially adding something like Kubernetes for better upkeep, playing around with the addresses of my application so that I don't have to remember the port numbers and adding new applications like N8N for automation.
