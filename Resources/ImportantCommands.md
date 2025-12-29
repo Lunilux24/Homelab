@@ -42,7 +42,7 @@ Docker Commands
 docker ps -a
 
 # Run the docker container for Jellyfin
-cd Documents/jellyfin | docker compose up --build -d
+cd home/bassim/jellyfin | docker compose up --build -d
 
 # Enter docker [program] cli (ex. FileBrowser)
 docker exec -it filebrowser

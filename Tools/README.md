@@ -198,4 +198,5 @@ The final thing I wanted to configure was for my newly configured Glance dashboa
 
 ![Glance Dashboard Screenshot](../Photos/Screenshot%202025-08-02%20135703.jpg)
 
-Shortly after messing around with my new glance dashboard, I found out about community widgets. Although some of the tutorials for these were obscure, I added the Google Calendar widget, the F1 widget, the NHL widget and the Tailscale Devices widget. Some were easier to setup than others, and it was a good opportunity to mess around with APIs and add some more custom flavour to my personal productivity dashboard.
+Shortly after messing around with my new glance dashboard, I found out about community widgets. Although some of the tutorials for these were obscure, I added the Google Calendar widget and the NHL widget. Some were easier to setup than others, and it was a good opportunity to mess around with APIs and add some more custom flavour to my personal productivity dashboard.
+

@@ -4,9 +4,9 @@ The applications in this stack will include all file management or productivity 
     - Immich
     - Karakeep
     - Nextcloud
-    - Appflowy
+    - Obsidian (with LiveSync addon)
     
-This stack is intended to move a lot of my productivity and file storage apps to open source and free applications. Nextcloud will replace my Google Drive, Immich will replace my iCloud Photos, Docmost to replace my OneNote and Hoarder as a storage for all the important articles and guides I will inevitably come across during my Homelab journey. 
+This stack is intended to move a lot of my productivity and file storage apps to open source and free applications. Nextcloud will replace my Google Drive, Immich will replace my iCloud Photos, Obsidian to replace my OneNote and Karakeep as a storage for all the important articles and guides I will inevitably come across during my Homelab journey. 
 
 
 ## Setting up Immich
@@ -66,11 +66,7 @@ This container actually ran first try which was kind of surprising to me, but I 
 
 I still had mounting problems to fix though and it turned out that on Nextcloud, you have to enable something called External Storage. It's a plugin that you can enable by going to the apps tab on the web client. Looks like there is a lot of potential to add some cool features to Nextcloud so I will look into adding more of these apps later on. 
 
-## Setting up Appflowy
-
-This one is still a work in progress. I have the container running, but the configuration settings are totally wrong. I will update this once it is fixed and I know what the issue is. 
-
-## Setting up File Browser (Abandoned)
+## Setting up File Browser (Abandoned for NextCloud)
 
 Setting up File Browser involved crafting up a docker compose file and running it. At the moment, I am having an issue where restarting the container deletes all of the users and switches the admin password as well. I haven't had the chance to look into this yet. 
 
@@ -123,4 +119,8 @@ sudo cp -a /media/nereusd/jellyfin_backup/. /media/jellyfind/
 ```
 
 In order to remount the drive, I needed to reboot the server due to the drive being "busy". I wasn't able to pinpoint what was using the drive so a quick reboot solved the problem.
+
+## Setting Up LiveSync for Obsidian
+
+Setting up LiveSync for Obsidian involved installing the plugin from the Obsidian community plugins tab and then configuring it to sync with my Nextcloud instance. 
 
