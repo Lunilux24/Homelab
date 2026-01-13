@@ -200,3 +200,47 @@ The final thing I wanted to configure was for my newly configured Glance dashboa
 
 Shortly after messing around with my new glance dashboard, I found out about community widgets. Although some of the tutorials for these were obscure, I added the Google Calendar widget and the NHL widget. Some were easier to setup than others, and it was a good opportunity to mess around with APIs and add some more custom flavour to my personal productivity dashboard.
 
+## NGINX
+
+As my server began to accumulate more users, I realized that I needed a better way to manage access to the various services running on it. I had unfortunately hit the user limit on Tailscale and could no longer send infinite invites out to friends and family. It was at this point that I decided that it was time to set up Jellyfin and Immich to be publicly accessible via the web and the first step was to set up a reverse proxy using NGINX. 
+
+The first step was to install NGINX via ```sudo apt install nginx```. I chose to run NGINX directly on the host machine instead of in a container because I wanted it to be lightweight and have minimal overhead. After installation, I created a new server block configuration file for each service I wanted to expose. Here is an example configuration for Jellyfin:
+
+```
+server {
+    listen 80;
+    server_name jellyfin.mydomain.com;
+
+    location / {
+        proxy_pass http://localhost:8096;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+I repeated this process for Immich and any other services I wanted to expose. After creating the configuration files, I enabled them by creating symbolic links in the `/etc/nginx/sites-enabled/` directory. Finally, I tested the NGINX configuration for syntax errors using `sudo nginx -t` and reloaded NGINX to apply the changes with `sudo systemctl reload nginx`.
+
+This was just the first step in making my services publicly accessible. The next step involved setting up SSL certificates using Let's Encrypt to ensure secure connections. I used Certbot to automate the process of obtaining and renewing SSL certificates. Overall, setting up NGINX as a reverse proxy has greatly improved the accessibility and security of my home lab services.
+
+After setting up NGINX, I decided to further enhance the security of my server by turning on the UFW on Linux. I allowed only necessary ports such as 22 for SSH, 80 for HTTP, and 443 for HTTPS. This ensured that only essential traffic could reach my server, reducing the attack surface. Unknowingly though, I had blocked my containers' ability to communicate with each other, meaning that my Jellyfin addon stack was no longer working and I could no longer download content. 
+
+### The Fix
+
+The problem was stemming from the UFW on Linux that I enabled on configuration of the Nginx reverse proxy. If UFW is active and blocking all incoming connections, the containers’ web UIs are still reachable from LAN, **but Sonarr/Radarr can’t talk to qBittorrent internally**. This happens because Docker hooks its own iptables chains and bypasses UFW except on forwarded/internal traffic. 
+
+This is exactly what docker container traffic is which is why despite the network being configured correctly, traffic still isn't able to travel between containers. This means that I had to find a way to treat docker traffic the same way we treat local traffic. 
+
+I managed to come up with a fix by creating a new external docker network called media-net and attaching the services gluetun, prowlarr, sonarr and radarr to it while leaving qbittorrent and flaresolverr behind gluetun. Instead of using the server IPv4 address now for the cross container communication, I can just use the service name instead. In the case of qBittorrent and FlareSolverr, I can just use gluetun:< port > since they are still behind the service. Here is how I defined the new network:
+
+``` 
+# Docker compose network definition
+networks:
+  media-net:
+    external: true
+
+# Create the network command
+docker network create media-net
+```
